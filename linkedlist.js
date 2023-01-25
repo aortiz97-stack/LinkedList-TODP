@@ -81,12 +81,25 @@ const LinkedList = () => {
     return false;
   };
 
+  const find = (value) => {
+    let currNode = head();
+    let idx = 0;
+    while (currNode !== null) {
+      if (currNode.value === value) {
+        return idx;
+      }
+      currNode = currNode.nextNode;
+      idx += 1;
+    }
+    throw (new Error('Value is not in linkedlist'));
+  };
+
   const pop = () => {
     if (tail() !== null) {
     }
   };
   return {
-    head, tail, append, prepend, size, at, contains, pop,
+    head, tail, append, prepend, size, at, contains, find, pop,
   };
 };
 
@@ -95,5 +108,5 @@ linkedList.prepend('1');
 
 linkedList.prepend('0');
 
-linkedList.append('2');
-console.log(linkedList.contains('3'));
+linkedList.append('last');
+console.log(linkedList.find('last'));
