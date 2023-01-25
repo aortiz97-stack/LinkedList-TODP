@@ -6,17 +6,17 @@ const Node = (passedValue) => {
 };
 
 const LinkedList = () => {
-  let head = null;
-  let tail = null;
+  let localHead = null;
+  let localTail = null;
 
-  const getHead = () => head;
+  const head = () => localHead;
   const setHead = (newHead) => {
-    head = newHead;
+    localHead = newHead;
   };
 
-  const getTail = () => tail;
+  const tail = () => localTail;
   const setTail = (newTail) => {
-    tail = newTail;
+    localTail = newTail;
   };
 
   const initializeLinkedList = (node) => {
@@ -26,7 +26,7 @@ const LinkedList = () => {
 
   const append = (value) => {
     const newNode = Node(value);
-    if (head === null && tail === null) {
+    if (head() === null && tail() === null) {
       initializeLinkedList(newNode);
     } else {
       tail.nextNode = newNode;
@@ -36,7 +36,7 @@ const LinkedList = () => {
 
   const prepend = (value) => {
     const newNode = Node(value);
-    if (head === null && tail === null) {
+    if (head() === null && tail() === null) {
       initializeLinkedList(newNode);
     } else {
       newNode.nextNode = head;
@@ -44,7 +44,7 @@ const LinkedList = () => {
     }
   };
   return {
-    getHead, getTail, setHead, setTail, append, prepend,
+    head, tail, append, prepend,
   };
 };
 
@@ -52,4 +52,4 @@ const linkedList = LinkedList();
 linkedList.prepend('what up');
 
 linkedList.prepend('ooo snap');
-console.log(linkedList.getTail());
+console.log(linkedList.tail());
