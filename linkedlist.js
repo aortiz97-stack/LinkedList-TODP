@@ -48,20 +48,36 @@ const LinkedList = () => {
     let currNode = head();
     let count = 0;
     while (currNode !== null) {
-      console.log(`currNode: ${currNode.value}`);
       count += 1;
       currNode = currNode.nextNode;
     }
     return count;
   };
+  const at = (index) => {
+    if (index === 0) {
+      return head();
+    } if (index === size() - 1) {
+      return tail();
+    } if (index < 0 || index > size() - 1) {
+      throw new Error('Invalid index');
+    }
+    let currNode = head();
+    let currIdx = 0;
+    while (currIdx !== index) {
+      currNode = currNode.nextNode;
+      currIdx += 1;
+    }
+    return currNode;
+  };
   return {
-    head, tail, append, prepend, size,
+    head, tail, append, prepend, size, at,
   };
 };
 
 const linkedList = LinkedList();
-linkedList.prepend('what up');
+linkedList.prepend('1');
 
-linkedList.prepend('ooo snap');
-console.log(`prepended next: ${linkedList.head().nextNode.value}`);
-console.log(linkedList.size());
+linkedList.prepend('0');
+
+linkedList.append('2');
+console.log(linkedList.at(2));
