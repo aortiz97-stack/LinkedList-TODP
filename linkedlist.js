@@ -19,23 +19,37 @@ const LinkedList = () => {
     tail = newTail;
   };
 
+  const initializeLinkedList = (node) => {
+    setHead(node);
+    setTail(node);
+  };
+
   const append = (value) => {
     const newNode = Node(value);
     if (head === null && tail === null) {
-      setHead(newNode);
-      setTail(newNode);
+      initializeLinkedList(newNode);
     } else {
       tail.nextNode = newNode;
       setTail(newNode);
     }
   };
+
+  const prepend = (value) => {
+    const newNode = Node(value);
+    if (head === null && tail === null) {
+      initializeLinkedList(newNode);
+    } else {
+      newNode.nextNode = head;
+      setHead(newNode);
+    }
+  };
   return {
-    getHead, getTail, setHead, setTail, append,
+    getHead, getTail, setHead, setTail, append, prepend,
   };
 };
 
 const linkedList = LinkedList();
-linkedList.append('what up');
+linkedList.prepend('what up');
 
-linkedList.append('ooo snap');
-console.log(linkedList.getHead());
+linkedList.prepend('ooo snap');
+console.log(linkedList.getTail());
