@@ -102,8 +102,22 @@ const LinkedList = () => {
       setTail(beforeTailNode);
     }
   };
+
+  const toString = () => {
+    let str = '';
+    let currNode = head();
+
+    while (currNode !== null) {
+      str += `( ${currNode.value} ) -> `;
+      currNode = currNode.nextNode;
+      if (currNode === null) {
+        str += 'null';
+      }
+    }
+    return str;
+  };
   return {
-    head, tail, append, prepend, size, at, contains, find, pop,
+    head, tail, append, prepend, size, at, contains, find, pop, toString,
   };
 };
 
@@ -113,5 +127,4 @@ linkedList.prepend('1');
 linkedList.prepend('0');
 
 linkedList.append('2');
-linkedList.pop();
-console.log(linkedList.head());
+console.log(linkedList.toString());
