@@ -116,8 +116,27 @@ const LinkedList = () => {
     }
     return str;
   };
+
+  const insertAt = (value, index) => {
+    const listLength = size();
+    if (index < 0 || index > listLength -1) {
+      throw (new Error('Invalid index'));
+    } else if (index === 0) {
+      prepend(value);
+    } else if (index === listLength - 1) {
+      append(value);
+    } else {
+      const newNode = Node(value);
+
+      const originalNode = at(index);
+      const beforeOriginalNode = at(index - 1);
+
+      beforeOriginalNode.nextNode = newNode;
+      newNode.nextNode = originalNode;
+    }
+  };
   return {
-    head, tail, append, prepend, size, at, contains, find, pop, toString,
+    head, tail, append, prepend, size, at, contains, find, pop, toString, insertAt,
   };
 };
 
@@ -127,4 +146,5 @@ linkedList.prepend('1');
 linkedList.prepend('0');
 
 linkedList.append('2');
+linkedList.insertAt('insertedNode', 2);
 console.log(linkedList.toString());
