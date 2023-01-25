@@ -96,6 +96,10 @@ const LinkedList = () => {
 
   const pop = () => {
     if (tail() !== null) {
+      const lastIndex = size() - 1;
+      const beforeTailNode = at(lastIndex - 1);
+      beforeTailNode.nextNode = null;
+      setTail(beforeTailNode);
     }
   };
   return {
@@ -108,5 +112,6 @@ linkedList.prepend('1');
 
 linkedList.prepend('0');
 
-linkedList.append('last');
-console.log(linkedList.find('last'));
+linkedList.append('2');
+linkedList.pop();
+console.log(linkedList.head());
