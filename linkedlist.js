@@ -69,8 +69,24 @@ const LinkedList = () => {
     }
     return currNode;
   };
+
+  const contains = (value) => {
+    let currNode = head();
+    while (currNode !== null) {
+      if (currNode.value === value) {
+        return true;
+      }
+      currNode = currNode.nextNode;
+    }
+    return false;
+  };
+
+  const pop = () => {
+    if (tail() !== null) {
+    }
+  };
   return {
-    head, tail, append, prepend, size, at,
+    head, tail, append, prepend, size, at, contains, pop,
   };
 };
 
@@ -80,4 +96,4 @@ linkedList.prepend('1');
 linkedList.prepend('0');
 
 linkedList.append('2');
-console.log(linkedList.at(2));
+console.log(linkedList.contains('3'));
