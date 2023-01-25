@@ -119,24 +119,44 @@ const LinkedList = () => {
 
   const insertAt = (value, index) => {
     const listLength = size();
-    if (index < 0 || index > listLength -1) {
+    if (index < 0 || index > listLength) {
       throw (new Error('Invalid index'));
     } else if (index === 0) {
       prepend(value);
-    } else if (index === listLength - 1) {
+    } else if (index === listLength) {
       append(value);
     } else {
       const newNode = Node(value);
 
-      const originalNode = at(index);
-      const beforeOriginalNode = at(index - 1);
+      const beforeNode = at(index - 1);
+      console.log(`BEFORE NODE: ${beforeNode}`);
+      const afterNode = at(index);
 
-      beforeOriginalNode.nextNode = newNode;
-      newNode.nextNode = originalNode;
+      beforeNode.nextNode = newNode;
+      newNode.nextNode = afterNode;
+    }
+  };
+
+  const removeAt = (index) => {
+    const length = size();
+    if (index < 0 || index > length - 1) {
+      throw (new Error('Invalid index'));
+    } else if (index === length - 1) {
+      pop();
+    } else if (index === 0) {
+      const oldHead = head();
+      setHead(oldHead.nextNode);
+      oldHead.nextNode = null;
+    } else {
+      const toRemoveNode = at(index);
+      const beforeRemoveNode = at(index - 1);
+
+      beforeRemoveNode.nextNode = toRemoveNode.nextNode;
+      toRemoveNode.nextNode = null;
     }
   };
   return {
-    head, tail, append, prepend, size, at, contains, find, pop, toString, insertAt,
+    head, tail, append, prepend, size, at, contains, find, pop, toString, insertAt, removeAt,
   };
 };
 
@@ -146,5 +166,8 @@ linkedList.prepend('1');
 linkedList.prepend('0');
 
 linkedList.append('2');
-linkedList.insertAt('insertedNode', 2);
+linkedList.insertAt('insertedNode', 0);
+
+//linkedList.removeAt(1);
+
 console.log(linkedList.toString());
